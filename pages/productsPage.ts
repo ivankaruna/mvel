@@ -16,7 +16,7 @@ export class ProductsPage {
   }
 
   async getProductByName(name: string) {
-    return this.page.locator('[data-test="inventory-item"]').filter({ hasText: name });
+    return this.productCart.filter({ hasText: name });
   }
 
   async addProductToCart(name: string) {
