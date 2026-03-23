@@ -13,7 +13,7 @@ test.describe('Тесты авторизации', () => {
 
   test('Успешная авторизация', async () => {
     await loginPage.login(`${username}`, `${password}`);
-    await expect(loginPage.page).toHaveURL(/inventory.html/);
+    await expect(loginPage.page).toHaveURL(/inventory/);
   });
 
   test('Неудачная авторизация с пустыми полями', async () => {
