@@ -4,13 +4,11 @@ export class ProductsPage {
   readonly page: Page;
   readonly productCart: Locator;
   readonly cartLink: Locator;
-  readonly cartCount: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.productCart = page.locator('[data-test="inventory-item"]');
     this.cartLink = page.locator('[data-test="shopping-cart-link"]');
-    this.cartCount = page.locator('[data-test="shopping-cart-link"]');
   }
 
   async navigate() {
@@ -32,7 +30,7 @@ export class ProductsPage {
   }
 
   async getCartCount() {
-    return parseInt((await this.cartCount.textContent()) || '0');
+    return parseInt((await this.cartLink.textContent()) || '0');
   }
 
   async goToCart() {

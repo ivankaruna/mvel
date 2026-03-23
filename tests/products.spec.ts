@@ -21,13 +21,13 @@ describe('Тесты продуктов', () => {
   test('Добавление товара в корзину', async () => {
     const initialCount = await productPage.getCartCount();
     await productPage.addProductToCart(product);
-    await expect(productPage.cartCount).toHaveText((initialCount + 1).toString());
+    await expect(productPage.cartLink).toHaveText((initialCount + 1).toString());
   });
 
   test('Удаление товара из корзины', async () => {
     const initialCount = await productPage.getCartCount();
     await productPage.addProductToCart(product);
-    await expect(productPage.cartCount).toHaveText((initialCount + 1).toString());
+    await expect(productPage.cartLink).toHaveText((initialCount + 1).toString());
     await productPage.removeForomCart(product);
     expect(await productPage.getCartCount()).toEqual(initialCount);
   });
