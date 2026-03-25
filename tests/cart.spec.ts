@@ -22,6 +22,7 @@ test.describe('Тесты корзины', () => {
     cartPage = new CartPage(page);
     await expect(cartPage.page).toHaveURL(/cart/);
   });
+
   test('Отображение добавленных товаров', async () => {
     await expect(cartPage.productCart).toHaveCount(2);
   });
