@@ -15,23 +15,26 @@ test.describe('Тест страницы проверки', () => {
   const lastName = 's';
   const zip = 'd';
 
-  test.beforeEach('', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.navigate();
-    await loginPage.login(process.env.USERNAME!, process.env.PASSWORD!);
+  test.beforeEach(
+    'Авторизация, добавление товаров в корзину, переход на страницу проверки, заполнение формы и переход на второй шаг',
+    async ({ page }) => {
+      const loginPage = new LoginPage(page);
+      await loginPage.navigate();
+      await loginPage.login(process.env.USERNAME!, process.env.PASSWORD!);
 
-    productPage = new ProductsPage(page);
-    await productPage.addProductToCart(product1);
-    await productPage.addProductToCart(product2);
-    await productPage.goToCart();
+      productPage = new ProductsPage(page);
+      await productPage.addProductToCart(product1);
+      await productPage.addProductToCart(product2);
+      await productPage.goToCart();
 
-    cartPage = new CartPage(page);
-    await expect(cartPage.page).toHaveURL(/cart/);
-    await cartPage.goToCheckout();
+      cartPage = new CartPage(page);
+      await expect(cartPage.page).toHaveURL(/cart/);
+      await cartPage.goToCheckout();
 
-    checkoutPage = new CheckoutPage(page);
-    await expect(checkoutPage.page).toHaveURL(/checkout-step-one/);
-  });
+      checkoutPage = new CheckoutPage(page);
+      await expect(checkoutPage.page).toHaveURL(/checkout-step-one/);
+    },
+  );
 
   test('Заполнение формы и переход на второй шаг', async () => {
     await checkoutPage.fillForm(firstName, lastName, zip);
